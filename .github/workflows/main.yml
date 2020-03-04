@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to production serve
 on:
   push:	
     branches:	
@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy to production serve
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@master
@@ -17,12 +17,13 @@ jobs:
     - name: npm install and build
       run: |
         npm install
-        npm run build-gh-page
+        npm run build
 
     - name: Deploy
       uses: s0/git-publish-subdir-action@master
       env:
-        REPO: self
-        BRANCH: gh-pages
+        REPO: git@github.com:iluminoguru/ng-ci-cd.git
+        BRANCH: artifacts
         FOLDER: dist/ng-v9
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        KNOWN_HOSTS_FILE: src/known_hosts
