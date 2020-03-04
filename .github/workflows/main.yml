@@ -27,3 +27,14 @@ jobs:
         FOLDER: dist/ng-v9
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY_NEW }}
         KNOWN_HOSTS_FILE: src/known_hosts
+    - name: Checkout
+      uses: actions/checkout@artifacts
+    - name: deploy file
+      uses: wlixcc/SFTP-Deploy-Action@v1.0
+      with:
+        username: 'ishan'
+        server: '139.59.57.41'
+        private_key: ${{ secrets.DEPLOY_PRIVATE_KEY_NEW }} 
+        local_path: './*'
+        remote_path: '/var/www/html/app.bmi' #make sure dir exist
+        args: '-o ConnectTimeout=5'
