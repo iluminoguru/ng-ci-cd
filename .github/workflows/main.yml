@@ -25,5 +25,5 @@ jobs:
         REPO: git@github.com:iluminoguru/ng-ci-cd.git
         BRANCH: artifacts
         FOLDER: dist/ng-v9
-        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY_NEW }}
         KNOWN_HOSTS_FILE: src/known_hosts
